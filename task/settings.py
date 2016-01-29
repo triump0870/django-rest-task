@@ -23,18 +23,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gu*u=jiy_byvy4!3itho^l($%ewquu0ecjqh6s$!t*uim+nmm6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
 
-if not DEBUG:
-   AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-   AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
-   AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-   STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-   S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-   STATIC_URL = S3_URL
-   STATIC_ROOT = 'staticfiles'
+#if not DEBUG:
+ #  AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+  # AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
+   #AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+  # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+  # S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+  # STATIC_URL = S3_URL
+
+#   STATIC_ROOT = 'staticfiles'
+
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+#STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
 
 # Application definition
 
@@ -87,10 +97,21 @@ WSGI_APPLICATION = 'task.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
+if not DEBUG:
+  DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    }
+  }
+else:
+  DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'movie',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'PASSWORD': 'Movie@0870',
+        'PORT': '5432'
     }
 }
 
