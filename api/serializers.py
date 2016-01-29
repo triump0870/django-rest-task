@@ -22,8 +22,8 @@ class MovieSerializer(serializers.ModelSerializer):
         director_data =  validated_data['director']
         if not isinstance(popularity_data, float):
             raise serializers.ValidationError("Popularity field is not correct")
-        if director_data is not in re.:
-            raise serializers.ValidationError("Director field should be of Type String")
+        #if director_data is not in re.:
+         #   raise serializers.ValidationError("Director field should be of Type String")
 
         movie = Movie.objects.create(**validated_data)
         return movie

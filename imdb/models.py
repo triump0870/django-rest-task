@@ -8,7 +8,7 @@ class Genre(models.Model):
         return self.genre
 
 class Movie(models.Model):
-    _string_validator
+#    _string_validator
     name = models.CharField(max_length=255)
     director = models.CharField(max_length=255)
     genre = models.ManyToManyField(Genre)
