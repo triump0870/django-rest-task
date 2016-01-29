@@ -33,7 +33,10 @@ if not DEBUG:
    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-   STATIC_URL = S3_URL# Application definition
+   STATIC_URL = S3_URL
+   STATIC_ROOT = 'staticfiles'
+
+# Application definition
 
 INSTALLED_APPS = (
     'django_admin_bootstrapped',
