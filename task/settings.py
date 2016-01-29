@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gu*u=jiy_byvy4!3itho^l($%ewquu0ecjqh6s$!t*uim+nmm6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
@@ -97,24 +97,11 @@ WSGI_APPLICATION = 'task.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-if DEBUG:
-  DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    }
-  }
-else:
-  DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'movie',
-        'USER': 'postgres',
-        'HOST': 'localhost',
-        'PASSWORD': 'Movie@0870',
-        'PORT': '5432'
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
